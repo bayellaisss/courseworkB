@@ -26,34 +26,29 @@ public class RoleController {
     }
 
     @PostMapping("/save")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RoleResponse> saveRole(@Valid @RequestBody RoleRequest roleResponse){
         RoleResponse saveRole = roleService.create(roleResponse);
         return new ResponseEntity<>(saveRole, HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<RoleResponse> findAllRoles() {
         return roleService.findAll();
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RoleResponse> getRoleById(@PathVariable Long id) {
         RoleResponse getRoleById = roleService.findById(id);
         return new ResponseEntity<>(getRoleById, HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RoleResponse> updateRole(@Valid @RequestBody RoleRequest roleResponse, @PathVariable Long id) {
         RoleResponse updated = roleService.update(roleResponse, id);
         return new ResponseEntity<>(updated, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/deleted/{id}")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deletedRole(@PathVariable Long id) {
         roleService.deleteById(id);
     }
