@@ -5,6 +5,8 @@ import kg.project.courseworkjava.model.UniversityResponse;
 import kg.project.courseworkjava.service.UniversityService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -51,5 +53,14 @@ public class UniversityController {
     public ResponseEntity<Void> deleteUniversity(@PathVariable Long id) {
         universityService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/filter")
+    public Page<UniversityResponse> getUniversities(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String city,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        return universityService.getAllByFilterUniversity(name, city, page, size);
     }
 }

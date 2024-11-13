@@ -7,9 +7,16 @@ import kg.project.courseworkjava.model.UniversityRequest;
 import kg.project.courseworkjava.model.UniversityResponse;
 import kg.project.courseworkjava.repos.UniversityRepos;
 import kg.project.courseworkjava.service.UniversityService;
+import kg.project.courseworkjava.specification.UniversitySpecification;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -63,5 +70,21 @@ public class UniversityServiceImpl implements UniversityService {
         University university = universityRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException("Университет с таким id не существует!"));
         universityRepository.deleteById(id);
+    }
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Page<UniversityResponse> getAllByFilterUniversity(
+            String name,
+            String city,
+            int page,
+            int size) {
+
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        Specification<University> specification = UniversitySpecification.withFiltersStudent(name,city);
+
+        return universityRepository.findAll(specification, pageable)
+                .map(universityMapper::entityToResponse);
     }
 }
