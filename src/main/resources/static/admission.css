@@ -1,0 +1,145 @@
+/* Общие стили */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8;
+    color: 004080;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #004080;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffdf00;
+}
+
+nav ul li a.active {
+    color: #ffdf00;
+    border-bottom: 2px solid #ffdf00;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: 004080;
+    color: #fff;
+}
+
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admissions h1 {
+    font-size: 2.5rem;
+    color: #004080;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admissions p {
+    font-size: 1.1rem;
+    color: #004080;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.tips-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.tip {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tip:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.tip h2 {
+    font-size: 1.5rem;
+    color: #2d2d2d;
+    margin-bottom: 15px;
+}
+
+.tip p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.cta a {
+    background-color: #2575fc;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta a:hover {
+    background-color: #6a11cb;
+}
+
+@media (max-width: 768px) {
+    .tips-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    .admissions h1 {
+        font-size: 2rem;
+    }
+
+    .tip {
+        padding: 20px;
+    }
+}

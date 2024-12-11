@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <link th:href="@{/css/index.css}" rel="stylesheet"/>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Главная</a></li>
+            <li><a th:href="@{/faculties}">Факультеты</a></li>
+            <li><a th:href="@{/admission}">Абитуриентам</a></li>
+            <li><a th:href="@{/contact}">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h2>Вход</h2>
+    <form method="post" th:action="@{/api/v1/auth/signin}" onsubmit="return login(event)">
+        <input type="text" name="username" th:value="${signInRequest.username}" placeholder="Логин" required>
+        <input type="password" name="password" th:value="${signInRequest.password}" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+    <script>
+        async function login(event){
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = {
+                username: formData.get('username'),
+                password: formData.get('password')
+            };
+            const resp = await fetch('/api/v1/auth/signin',{
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(data)
+            });
+            if(resp.ok){
+                const json = await resp.json();
+                // Сохраняем токен в localStorage
+                localStorage.setItem('token', json.token);
+                window.location.href = '/';
+            } else {
+                alert('Ошибка входа');
+            }
+        }
+    </script>
+</main>
+<footer>
+    <p>&copy; 2024 ВУЗ. Все права защищены.</p>
+</footer>
+</body>
+</html>

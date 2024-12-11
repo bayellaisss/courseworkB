@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Подать заявку</title>
+    <link th:href="@{/css/index.css}" rel="stylesheet"/>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Главная</a></li>
+            <li><a th:href="@{/faculties}">Факультеты</a></li>
+            <li><a th:href="@{/admission}">Абитуриентам</a></li>
+            <li><a th:href="@{/contact}">Контакты</a></li>
+            <li th:if="${isAuthenticated}"><a th:href="@{/my_applications}">Мои заявки</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <h1>Подать заявку на <span th:text="${program.specialization.name}"></span></h1>
+    <form th:action="@{/applications/create(programId=${program.id})}" method="post">
+        <p>Вы уверены, что хотите подать заявку на эту программу?</p>
+        <button type="submit">Подать заявку</button>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 ВУЗ. Все права защищены.</p>
+</footer>
+</body>
+</html>

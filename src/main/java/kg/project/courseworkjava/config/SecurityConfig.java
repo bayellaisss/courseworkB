@@ -38,37 +38,58 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    }
-
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
-    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    @Bean(name=BeanIds.AUTHENTICATION_MANAGER)
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
 
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/webjars/**",
+            "/api/v1/auth/**"
+    };
+
+    @Override
+    public void configure(WebSecurity web){
+        web.ignoring().antMatchers(AUTH_WHITELIST);
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
-
-                "http://localhost:8081"
-
+                "http://localhost:3000",
+                "http://localhost:8081",
+                "http://localhost:3001",
+                "http://localhost:3003",
+                "http://localhost:8888",
+                "http://localhost:8086",
+                "http://127.0.0.1:8086",
+                "http://localhost:3002",
+                "http://5.59.233.243:8086",
+                "https://5.59.233.243:8086",  // Используйте HTTPS
+                "https://europatravell.com",
+                "https://europatravellback.com"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "HEAD", "OPTIONS", "PUT", "PATCH", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList(
-                "Accept", "Access-Control-Request-Method","Access-Control-Allow-Origin", "Access-Control-Request-Headers", "Accept-Language",
-                "Authorization","multipart/form-data", "Content-Type", "Request-Name", "Request-Surname", "Origin", "X-Request-AppVersion",
-                "X-Request-OsVersion", "X-Request-Device", "X-Requested-With","strict-origin","no-referrer-when-downgrade", "strict-origin-when-cross-origin","origin-when-cross-origin"
+                "Accept", "Access-Control-Request-Method", "Access-Control-Allow-Origin", "Access-Control-Request-Headers", "Accept-Language",
+                "Authorization", "multipart/form-data", "Content-Type", "Request-Name", "Request-Surname", "Origin", "X-Request-AppVersion",
+                "X-Request-OsVersion", "X-Request-Device", "X-Requested-With", "strict-origin", "no-referrer-when-downgrade", "strict-origin-when-cross-origin", "origin-when-cross-origin"
         ));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -76,37 +97,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return source;
     }
 
-    private static final String[] AUTH_WHITELIST = {
-            "/swagger-resources/**",
-            "/swagger-ui/**",  // Swagger 3 путь для UI
-            "/v3/api-docs/**", // Swagger 3 путь для OpenAPI документации
-            "/webjars/**",
-            "/api/v1/checkCertificate/**"
-    };
-
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers(AUTH_WHITELIST);
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(
-                        "/auth/**", "/swagger-ui/", "/swagger-ui/**", "/swagger-ui.html",
-                        "/swagger-resources/**", "/v2/api-docs", "/webjars/**","/api/v1/auth/**","/api/v1/roles/**"
-                ).permitAll()
+                .antMatchers("/**", "/api/v1/auth/**", "/login", "/register", "/css/**", "/js/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .headers()
-                .contentSecurityPolicy("script-src 'self'")
-                .and()
-                .frameOptions().sameOrigin();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
         http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.cors();
     }

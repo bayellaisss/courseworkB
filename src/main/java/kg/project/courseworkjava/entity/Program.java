@@ -16,23 +16,18 @@ public class Program {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "university_id", nullable = false)
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "university_id", nullable=false)
     private University university;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "specialization_id", nullable = false)
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="specialization_id", nullable=false)
     private Specialization specialization;
 
-    private Integer duration;  // продолжительность в годах
-
-    private BigDecimal cost;  // стоимость обучения
-
-    private String conditions;  // условия обучения
-
-    private LocalDate startDate;  // дата начала обучения
-
-    private LocalDate endDate;  // дата окончания обучения
-
-    private String language;  // язык обучения
+    private Integer duration;
+    private BigDecimal cost;
+    private String conditions;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String language;
 }

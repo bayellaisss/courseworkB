@@ -1,0 +1,160 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #004080;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #004080;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #003060;
+}
+
+/* Карусель */
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px; /* Добавляем отступ между слайдами */
+    padding: 20px 0;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    width: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(to right, #004080, #66a3d2); /* Мягкий градиент для фона */
+    color: white; /* Белый цвет текста */
+    box-shadow: 0 4px 10px rgba(94, 133, 224, 0.1); /* Легкая тень для слайдов */
+    scroll-snap-align: start;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.carousel-item:hover {
+    transform: translateY(-10px); /* Легкое поднятие слайда */
+    box-shadow: 0 8px 20px rgba(49, 112, 184, 0.2); /* Усиление тени при наведении */
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+}
+
+.carousel-button {
+    background-color: #004080;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 5px;
+}
+
+.carousel-button:disabled {
+    background-color: #61ace2;
+    cursor: not-allowed;
+}
+
+.carousel-button:hover {
+    background-color: #003060;
+}
+
+/* Анимация появления */
+.carousel-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s forwards;
+}
+/* Стили футера */
+footer {
+    background-color: #004080; /* Темно-синий фон */
+    color: white; /* Белый цвет текста */
+    padding: 20px; /* Отступы для футера */
+    text-align: center; /* Выравнивание текста по центру */
+    font-size: 14px; /* Размер шрифта */
+    margin-top: 40px; /* Отступ сверху */
+    border-top: 2px solid #003060; /* Легкая граница сверху */
+}
+
+footer p {
+    margin: 0; /* Убираем лишние отступы */
+}
+
+footer a {
+    color: #66a3d2; /* Синий цвет для ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* Адаптивность футера */
+@media (max-width: 600px) {
+    footer {
+        font-size: 12px; /* Меньший размер шрифта на маленьких экранах */
+        padding: 15px; /* Меньше отступов */
+    }
+}
+
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

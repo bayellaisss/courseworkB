@@ -27,6 +27,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
+@Transactional
 public class AuthServiceImpl implements AuthService {
 
     @Autowired
@@ -38,12 +39,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     RoleRepos roleRepository;
 
-//    @Autowired
-//    PermissionService permissionService;
-
-    @Autowired
-    UserDetailsService userDetailsService;
-
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -51,7 +46,6 @@ public class AuthServiceImpl implements AuthService {
     JWTUtils jwtUtils;
 
     @Override
-    @Transactional
     public JWTResponse signIn(SignInRequest signInRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInRequest.getUsername(), signInRequest.getPassword())
@@ -64,32 +58,30 @@ public class AuthServiceImpl implements AuthService {
         String role = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Role not found"));
-
-//        List<String> permissions = permissionService.getPermissionsByUser(userDetails.getId());
+                .orElse("ROLE_USER");
 
         return new JWTResponse(jwt, userDetails.getId(), userDetails.getUsername(), role);
     }
 
     @Override
-    @Transactional
     public MessageResponse signUp(SignUpRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             throw new AlreadyExistsException("Error: Username already exists");
         }
 
-        User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
-                passwordEncoder.encode(signUpRequest.getPassword()),
-                signUpRequest.getFirstName(),signUpRequest.getLastName());
-
         Role role = roleRepository.findById(signUpRequest.getRoleId())
                 .orElseThrow(() -> new EntityNotFoundException("Error: Role not found"));
 
-        user.setRole(role);
-        userRepository.save(user);
+        User user = User.builder()
+                .username(signUpRequest.getUsername())
+                .email(signUpRequest.getEmail())
+                .password(passwordEncoder.encode(signUpRequest.getPassword()))
+                .firstName(signUpRequest.getFirstName())
+                .lastName(signUpRequest.getLastName())
+                .role(role)
+                .build();
 
+        userRepository.save(user);
         return new MessageResponse("User CREATED");
     }
-
 }

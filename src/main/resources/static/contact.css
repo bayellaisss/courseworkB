@@ -1,0 +1,154 @@
+/* Основные стили для страницы */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    padding: 1rem 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.contact-info, .universities-contact, .contact-form {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.contact-info h2, .universities-contact h2, .contact-form h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.contact-info p, .universities-contact p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.university {
+    margin-bottom: 20px;
+}
+
+.university h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.university p {
+    font-size: 16px;
+    color: #555;
+}
+
+.university a {
+    color: #1E90FF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.university a:hover {
+    text-decoration: underline;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* Мобильная адаптивность */
+@media (max-width: 768px) {
+    .contact-info, .universities-contact, .contact-form {
+        padding: 15px;
+    }
+
+    .university h3 {
+        font-size: 18px;
+    }
+
+    label, input, textarea, button {
+        font-size: 14px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px 0;
+    }
+}
