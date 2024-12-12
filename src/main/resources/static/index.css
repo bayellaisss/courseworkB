@@ -12,6 +12,48 @@ header {
     color: white;
     text-align: center;
 }
+/* Стили для поиска */
+/* Стили для формы поиска */
+.search-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.search-form input {
+    padding: 5px 10px;
+    font-size: 19px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+}
+
+.search-form input:focus {
+    border-color: #004080;
+    box-shadow: 0 0 5px rgba(0, 64, 128, 0.5);
+}
+
+.search-form button {
+    padding: 5px 10px;
+    font-size: 19px;
+    background-color: #004080;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #003060;
+}
+
+
+
 
 nav ul {
     list-style-type: none;
@@ -38,28 +80,28 @@ h1, h2 {
     color: #333;
 }
 
-button {
-    border: none;
-    background-color: transparent;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-}
-
 .button {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 15px 30px;
     background-color: #004080;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    margin-top: 20px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    position: absolute;
+    top: 59%; /* Смещаем ниже */
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .button:hover {
     background-color: #003060;
+    transform: translate(-50%, -50%) scale(2.05);
 }
+
 
 /* Карусель */
 .carousel {
@@ -119,6 +161,15 @@ button {
     transform: translateY(20px);
     animation: fadeIn 0.5s forwards;
 }
+nav ul li a:hover {
+    color: #ffdf00;
+}
+
+nav ul li a.active {
+    color: #ffdf00;
+    border-bottom: 2px solid #ffdf00;
+}
+
 /* Стили футера */
 footer {
     background-color: #004080; /* Темно-синий фон */
@@ -126,21 +177,12 @@ footer {
     padding: 20px; /* Отступы для футера */
     text-align: center; /* Выравнивание текста по центру */
     font-size: 14px; /* Размер шрифта */
-    margin-top: 40px; /* Отступ сверху */
     border-top: 2px solid #003060; /* Легкая граница сверху */
-}
-
-footer p {
-    margin: 0; /* Убираем лишние отступы */
-}
-
-footer a {
-    color: #66a3d2; /* Синий цвет для ссылок */
-    text-decoration: none; /* Убираем подчеркивание */
-}
-
-footer a:hover {
-    text-decoration: underline; /* Подчеркивание при наведении */
+    position: fixed; /* Фиксируем футер */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Чтобы футер был над другими элементами */
 }
 
 /* Адаптивность футера */

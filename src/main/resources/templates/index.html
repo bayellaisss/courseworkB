@@ -4,23 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная - ВУЗ</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="/index.css">
+
+    <script src="/index.js" defer></script>
 </head>
 <body>
 <header>
     <nav>
         <ul>
-            <li><a href="index.html">Главная</a></li>
-            <li><a href="faculties.html">Факультеты</a></li>
-            <li><a href="admission.html">Абитуриентам</a></li>
-            <li><a href="contact.html">Контакты</a></li>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/faculties">Факультеты</a></li>
+            <li><a href="/admission">Абитуриентам</a></li>
+            <li><a href="/contact">Контакты</a></li>
+            <!-- Для неавторизованных пользователей -->
+            <li><a href="/login" id="login-link">Войти</a></li>
+            <li><a href="/register" id="register-link">Регистрация</a></li>
+
+            <!-- Для авторизованных пользователей -->
+            <li id="logout-section" style="display: none;">
+                <a href="/logout">Выйти (Привет, <span id="user-name"></span>)</a>
+            </li>
         </ul>
+        <form class="search-form" action="/search" method="get">
+            <input type="text" name="query" placeholder="Поиск..." required>
+            <button type="submit">Искать</button>
+        </form>
     </nav>
+    <script>
+        // Пример логики для показа/скрытия ссылок на клиентской стороне
+        document.addEventListener("DOMContentLoaded", function () {
+            // Имитируем проверку авторизации (замените на реальную логику)
+            const userName = null; // Замените на значение, полученное с сервера
+
+            if (userName) {
+                // Если пользователь авторизован
+                document.getElementById("login-link").style.display = "none";
+                document.getElementById("register-link").style.display = "none";
+                document.getElementById("logout-section").style.display = "inline";
+                document.getElementById("user-name").textContent = userName;
+            } else {
+                // Если пользователь не авторизован
+                document.getElementById("logout-section").style.display = "none";
+            }
+        });
+    </script>
 </header>
 <main>
-    <!-- <h1>Добро пожаловать в наш ВУЗ!</h1> -->
-    <!-- <p>Информация о вузе, новости, события и многое другое.</p> -->
     <h2>Университеты Кыргызской Республики</h2>
 
     <div class="carousel-container">
@@ -55,14 +84,11 @@
         <button class="carousel-button" onclick="scrollCarousel('right')">&#8250;</button>
     </div>
 
-    <a href="faculties.html" class="button">Узнать больше о факультетах</a>
+    <a href="/faculties" class="button">Узнать больше о факультетах</a>
 </main>
 <footer>
     <p>&copy; 2024 ВУЗ. Все права защищены.</p>
 </footer>
 </body>
 </html>
-
-
-
 

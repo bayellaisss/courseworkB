@@ -96,20 +96,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**", "/api/v1/auth/**", "/login", "/register", "/css/**", "/js/**").permitAll()
+                .antMatchers("/api/v1/auth/**", "/login", "/register","/**","/universities", "/css/**", "/js/**").permitAll() // разрешаем публичный доступ
                 .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
-                .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        http.addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        http.cors();
+                .httpBasic(); // включаем Basic Auth
     }
 
 }

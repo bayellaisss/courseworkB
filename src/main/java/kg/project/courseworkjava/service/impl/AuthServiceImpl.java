@@ -55,12 +55,8 @@ public class AuthServiceImpl implements AuthService {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        String role = userDetails.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .findFirst()
-                .orElse("ROLE_USER");
 
-        return new JWTResponse(jwt, userDetails.getId(), userDetails.getUsername(), role);
+        return new JWTResponse(jwt, userDetails.getId(), userDetails.getUsername());
     }
 
     @Override
@@ -69,16 +65,12 @@ public class AuthServiceImpl implements AuthService {
             throw new AlreadyExistsException("Error: Username already exists");
         }
 
-        Role role = roleRepository.findById(signUpRequest.getRoleId())
-                .orElseThrow(() -> new EntityNotFoundException("Error: Role not found"));
-
         User user = User.builder()
                 .username(signUpRequest.getUsername())
                 .email(signUpRequest.getEmail())
                 .password(passwordEncoder.encode(signUpRequest.getPassword()))
                 .firstName(signUpRequest.getFirstName())
                 .lastName(signUpRequest.getLastName())
-                .role(role)
                 .build();
 
         userRepository.save(user);

@@ -17,14 +17,12 @@ public class JWTResponse {
     private String type = "Bearer";
     private Long id;
     private String username;
-    private String role;
 
     private List<String> permission;
 
-    public JWTResponse(String token, Long id, String username, String role) {
+    public JWTResponse(String token, Long id, String username) {
         this.token = token;
         this.id = id;
         this.username = username;
-        this.role = role;
     }
 }

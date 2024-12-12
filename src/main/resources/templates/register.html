@@ -1,63 +1,34 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
-    <link th:href="@{/css/index.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/register.css}">
 </head>
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a th:href="@{/}">Главная</a></li>
-            <li><a th:href="@{/faculties}">Факультеты</a></li>
-            <li><a th:href="@{/admission}">Абитуриентам</a></li>
-            <li><a th:href="@{/contact}">Контакты</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <h2>Регистрация</h2>
-    <form method="post" th:action="@{/api/v1/auth/signup}" onsubmit="return registerUser(event)">
-        <input type="text" name="username" placeholder="Логин" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="firstName" placeholder="Имя" required>
-        <input type="text" name="lastName" placeholder="Фамилия" required>
-        <input type="password" name="password" placeholder="Пароль" required>
-        <!-- Предположим, что у вас есть роль с id=1 это ROLE_USER -->
-        <input type="hidden" name="roleId" value="1">
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-    <script>
-        async function registerUser(event){
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = {
-                username: formData.get('username'),
-                email: formData.get('email'),
-                firstName: formData.get('firstName'),
-                lastName: formData.get('lastName'),
-                password: formData.get('password'),
-                roleId: formData.get('roleId')
-            };
-
-            const resp = await fetch('/api/v1/auth/signup',{
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify(data)
-            });
-
-            if(resp.ok){
-                alert('Пользователь создан, теперь войдите');
-                window.location.href='/login';
-            } else {
-                alert('Ошибка регистрации');
-            }
-        }
-    </script>
-</main>
-<footer>
-    <p>&copy; 2024 ВУЗ. Все права защищены.</p>
-</footer>
+<h1>Регистрация</h1>
+<form th:action="@{/web/register}" method="post">
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <!-- Дополнительные поля, если нужны: firstName, lastName, roleId -->
+    <label for="firstName">Имя:</label>
+    <input type="text" id="firstName" name="firstName">
+    <br>
+    <label for="lastName">Фамилия:</label>
+    <input type="text" id="lastName" name="lastName">
+    <br>
+    <!-- Для упрощения укажем roleId=1, или можно сделать селект -->
+    <input type="hidden" name="roleId" value="1">
+    <button type="submit">Зарегистрироваться</button>
+</form>
+<p th:if="${error}" th:text="${error}"></p>
 </body>
 </html>
