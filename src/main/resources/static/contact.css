@@ -1,46 +1,56 @@
 /* Основные стили для страницы */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    background-color: #ffffff; /* Белый фон для минимализма */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    background-color: #004080;
-    padding: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 160px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffe100;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+    display: flex;
+    gap: 20px;
 }
 
 nav ul li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 18px;
+    font-weight: bold;
 }
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
 main {
     max-width: 1200px;
     margin: 2rem auto;
-    padding: 0 15px;
+    padding: 100px 15px;
 }
 
 h1 {
     text-align: center;
-    color: #004080;
+    color: #0c0c0c;
 }
 
 .contact-info, .universities-contact, .contact-form {
@@ -52,7 +62,7 @@ h1 {
 }
 
 .contact-info h2, .universities-contact h2, .contact-form h2 {
-    color: #004080;
+    color: #ffe100;
     font-size: 24px;
     margin-bottom: 10px;
 }
@@ -68,17 +78,17 @@ h1 {
 
 .university h3 {
     font-size: 20px;
-    color: #004080;
+    color: #ffe100;
     margin-bottom: 5px;
 }
 
 .university p {
     font-size: 16px;
-    color: #004080;
+    color: #0c0c0c;
 }
 
 .university a {
-    color: #1E90FF;
+    color: #0c0c0c;
     text-decoration: none;
     font-weight: bold;
 }
@@ -91,7 +101,7 @@ label {
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
-    color: #004080;
+    color: #0c0c0c;
 }
 
 input, textarea {
@@ -109,7 +119,7 @@ textarea {
 }
 
 button {
-    background-color: #004080;
+    background-color: #ffe100;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -119,11 +129,11 @@ button {
 }
 
 button:hover {
-    background-color: #004080;
+    background-color: #0c0c0c;
 }
 
 footer {
-    background-color: #004080;
+    background-color: #0c0c0c;
     color: white;
     text-align: center;
     padding: 1rem 0;

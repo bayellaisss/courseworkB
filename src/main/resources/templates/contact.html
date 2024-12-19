@@ -9,19 +9,17 @@
 <body>
 <header>
     <nav>
+        <div class="logo">
+            <span>Университет мечты</span>
+        </div>
         <ul>
-            <li><a th:href="@{/}">Главная</a></li>
-            <li><a th:href="@{/faculties}">Факультеты</a></li>
-            <li><a th:href="@{/admission}">Абитуриентам</a></li>
-            <li><a th:href="@{/contact}" class="active">Контакты</a></li>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/faculties">Факультеты</a></li>
+            <li><a href="/admission">Абитуриентам</a></li>
+            <li><a href="/contact">Контакты</a></li>
             <!-- Для неавторизованных пользователей -->
             <li><a href="/login" id="login-link">Войти</a></li>
-            <li><a href="/register" id="register-link">Регистрация</a></li>
-
-            <!-- Для авторизованных пользователей -->
-            <li id="logout-section" style="display: none;">
-                <a href="/logout">Выйти (Привет, <span id="user-name"></span>)</a>
-            </li>
+            <li><a href="/register" id="register-link">Регистрация</a>
         </ul>
     </nav>
 </header>

@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главная - ВУЗ</title>
     <link rel="stylesheet" href="/index.css">
-
-    <script src="/index.js" defer></script>
 </head>
 <body>
 <header>
     <nav>
+        <div class="logo">
+            <span>Университет мечты</span>
+        </div>
         <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="/faculties">Факультеты</a></li>
@@ -18,77 +19,93 @@
             <li><a href="/contact">Контакты</a></li>
             <!-- Для неавторизованных пользователей -->
             <li><a href="/login" id="login-link">Войти</a></li>
-            <li><a href="/register" id="register-link">Регистрация</a></li>
-
-            <!-- Для авторизованных пользователей -->
-            <li id="logout-section" style="display: none;">
-                <a href="/logout">Выйти (Привет, <span id="user-name"></span>)</a>
-            </li>
+            <li><a href="/register" id="register-link">Регистрация</a>
         </ul>
-        <form class="search-form" action="/search" method="get">
-            <input type="text" name="query" placeholder="Поиск..." required>
-            <button type="submit">Искать</button>
-        </form>
     </nav>
-    <script>
-        // Пример логики для показа/скрытия ссылок на клиентской стороне
-        document.addEventListener("DOMContentLoaded", function () {
-            // Имитируем проверку авторизации (замените на реальную логику)
-            const userName = null; // Замените на значение, полученное с сервера
-
-            if (userName) {
-                // Если пользователь авторизован
-                document.getElementById("login-link").style.display = "none";
-                document.getElementById("register-link").style.display = "none";
-                document.getElementById("logout-section").style.display = "inline";
-                document.getElementById("user-name").textContent = userName;
-            } else {
-                // Если пользователь не авторизован
-                document.getElementById("logout-section").style.display = "none";
-            }
-        });
-    </script>
 </header>
-<main>
-    <h2>Университеты Кыргызской Республики</h2>
 
-    <div class="carousel-container">
-        <button class="carousel-button" onclick="scrollCarousel('left')">&#8249;</button>
-        <div class="carousel">
-            <div class="carousel-item">
-                <h3>Кыргызский Национальный Университет им. Жусупа Баласагына</h3>
-                <p>Рейтинг: 9.5</p>
-                <p>Крупнейший и старейший университет Кыргызстана.</p>
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Найдите университет своей<br> мечты сегодня</h1>
+            <form class="search-form" action="/search" method="get">
+                <select name="level">
+                    <option>Уровень обучения</option>
+                    <option>Бакалавриат</option>
+                    <option>Магистратура</option>
+                    <option>Докторантура</option>
+                </select>
+                <select name="location">
+                    <option>Место учебы</option>
+                    <option>Бишкек</option>
+                    <option>Ош</option>
+                    <option>Джалал-Абад</option>
+                    <option>Баткен</option>
+                    <option>Иссык-Куль</option>
+                    <option>Нарын</option>
+                    <option>Талас</option>
+                    <option>Чуй</option>
+
+                </select>
+                <select name="subject">
+                    <option>Предмет</option>
+                    <option>Информатика</option>
+                    <option>Экономика</option>
+                    <option>Медицина</option>
+                </select>
+                <button type="submit">Поиск</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Карточки университетов -->
+    <section class="universities">
+        <h2>Популярные университеты</h2>
+        <div class="cards-container">
+            <div class="card">
+                <img src="/images/images.jpg" alt="Университет">
+                <h3>
+                    Кыргызско-Германский институт прикладной информатики</h3>
             </div>
-            <div class="carousel-item">
-                <h3>Кыргызский Государственный Технический Университет им. И. Раззакова</h3>
-                <p>Рейтинг: 9.0</p>
-                <p>Ведущий технический вуз страны.</p>
+            <div class="card">
+                <img src="/images/university1.jpg" alt="Университет 1">
+                <h3>
+                    Американский университет Центральной Азии</h3>
             </div>
-            <div class="carousel-item">
+            <div class="card">
+                <img src="/images/university2.jpg" alt="Университет 2">
+                <h3>Кыргызский Государственный Технический Университет</h3>
+            </div>
+            <div class="card">
+                <img src="/images/university3.jpg" alt="Университет 3">
                 <h3>Кыргызско-Турецкий Университет "Манас"</h3>
-                <p>Рейтинг: 8.8</p>
-                <p>Международный образовательный центр.</p>
-            </div>
-            <div class="carousel-item">
-                <h3>Кыргызский Экономический Университет им. М. Рыскулбекова</h3>
-                <p>Рейтинг: 8.5</p>
-                <p>Ведущий вуз в области экономики и управления.</p>
-            </div>
-            <div class="carousel-item">
-                <h3>Академия Управления при Президенте КР</h3>
-                <p>Рейтинг: 8.3</p>
-                <p>Уникальный вуз для подготовки управленцев.</p>
             </div>
         </div>
-        <button class="carousel-button" onclick="scrollCarousel('right')">&#8250;</button>
-    </div>
+    </section>
+    <!-- Описание после популярных университетов -->
+    <section class="about-universities">
+        <h2>Почему стоит выбрать наш сайт?</h2>
+        <p>
+            Наш сайт предоставляет широкий выбор университетов и программ обучения, чтобы помочь вам найти учебное заведение, которое лучше всего подходит для реализации ваших мечтаний. Мы сотрудничаем с ведущими вузами страны, чтобы предоставить вам актуальную информацию и полезные советы для поступления.
+        </p>
+        <p>
+            Независимо от того, ищете ли вы бакалавриат, магистратуру или докторантуру, у нас есть всё необходимое, чтобы облегчить ваш выбор. Воспользуйтесь нашим удобным поиском, чтобы начать своё образовательное путешествие уже сегодня!
+        </p>
+    </section>
 
-    <a href="/faculties" class="button">Узнать больше о факультетах</a>
 </main>
+
 <footer>
-    <p>&copy; 2024 ВУЗ. Все права защищены.</p>
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="/about">О нас</a> |
+            <a href="mailto:info@university.com">info@university.com</a> |
+            <span>Телефон: +996 (312) 123-456</span>
+        </div>
+        <p>&copy; 2024 ВУЗ. Все права защищены.</p>
+    </div>
 </footer>
 </body>
 </html>
+
 

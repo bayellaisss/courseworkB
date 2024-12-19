@@ -7,43 +7,83 @@ body {
 }
 
 header {
-    background-color: #004080;
-    padding: 10px;
-    color: white;
-    text-align: center;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+
 }
-/* Стили для поиска */
-/* Стили для формы поиска */
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffe100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-buttons .btn {
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.auth-buttons .register {
+    background-color: #2ba84a;
+}
+
+.auth-buttons .register:hover {
+    background-color: #23923a;
+}
+
+.hero {
+    background-color:#ffe100 ;
+
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.hero h1 {
+    color: #000000;
+    font-size: 40px;
+    margin-bottom: 20px;
+    padding: 35px;
+}
+
 .search-form {
     display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    justify-content: center;
+    gap: 10px;
 }
 
-.search-form input {
-    padding: 5px 10px;
-    font-size: 19px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    outline: none;
-}
-
-.search-form input:focus {
-    border-color: #004080;
-    box-shadow: 0 0 5px rgba(0, 64, 128, 0.5);
+.search-form select, .search-form button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
 }
 
 .search-form button {
-    padding: 5px 10px;
-    font-size: 19px;
     background-color: #004080;
-    color: white;
-    border: none;
-    border-radius: 0 4px 4px 0;
+    color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -52,151 +92,91 @@ header {
     background-color: #003060;
 }
 
-
-
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-h1, h2 {
+.universities {
     text-align: center;
-    color: #333;
+    padding: 40px;
 }
 
-.button {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #004080;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-    position: absolute;
-    top: 59%; /* Смещаем ниже */
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.button:hover {
-    background-color: #003060;
-    transform: translate(-50%, -50%) scale(2.05);
-}
-
-
-/* Карусель */
-.carousel {
+.cards-container {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 20px; /* Добавляем отступ между слайдами */
-    padding: 20px 0;
+    justify-content: center;
+    gap: 20px;
 }
 
-.carousel-item {
-    flex: 0 0 auto;
-    width: 300px;
-    margin: 10px;
-    border-radius: 10px;
+.card {
+    background: #ffffff;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background: linear-gradient(to right, #004080, #66a3d2); /* Мягкий градиент для фона */
-    color: white; /* Белый цвет текста */
-    box-shadow: 0 4px 10px rgba(94, 133, 224, 0.1); /* Легкая тень для слайдов */
-    scroll-snap-align: start;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 300px;
+    transition: transform 0.3s ease;
 }
 
-.carousel-item:hover {
-    transform: translateY(-10px); /* Легкое поднятие слайда */
-    box-shadow: 0 8px 20px rgba(49, 112, 184, 0.2); /* Усиление тени при наведении */
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
-.carousel-container {
-    display: flex;
-    align-items: center;
+.card h3 {
+    margin-top: 15px;
+    color: #333333;
 }
 
-.carousel-button {
-    background-color: #004080;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    margin: 0 10px;
-    border-radius: 5px;
+.card:hover {
+    transform: translateY(-10px);
+}
+/* Стили для секции "Почему стоит выбрать наш сайт?" */
+.about-universities {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #F9E300; /* Светлый желтый фон */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #F9E300;
 }
 
-.carousel-button:disabled {
-    background-color: #61ace2;
-    cursor: not-allowed;
+.about-universities h2 {
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
-.carousel-button:hover {
-    background-color: #003060;
+.about-universities p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.8;
 }
-
-/* Анимация появления */
-.carousel-item {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.5s forwards;
-}
-nav ul li a:hover {
-    color: #ffdf00;
-}
-
-nav ul li a.active {
-    color: #ffdf00;
-    border-bottom: 2px solid #ffdf00;
-}
-
-/* Стили футера */
 footer {
-    background-color: #004080; /* Темно-синий фон */
-    color: white; /* Белый цвет текста */
-    padding: 20px; /* Отступы для футера */
-    text-align: center; /* Выравнивание текста по центру */
-    font-size: 14px; /* Размер шрифта */
-    border-top: 2px solid #003060; /* Легкая граница сверху */
-    position: fixed; /* Фиксируем футер */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; /* Чтобы футер был над другими элементами */
+    background-color: #000000; /* Черный фон */
+    color: white; /* Белый текст */
+    text-align: center;
+    padding: 15px 0; /* Отступы сверху и снизу */
+    width: 100%;
+    margin-top: 20px; /* Добавляем отступ сверху */
 }
 
-/* Адаптивность футера */
-@media (max-width: 600px) {
-    footer {
-        font-size: 12px; /* Меньший размер шрифта на маленьких экранах */
-        padding: 15px; /* Меньше отступов */
-    }
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Отступ между элементами */
 }
 
+.footer-links a {
+    color: #ffdf00; /* Желтый цвет для ссылок */
+    text-decoration: none;
+    margin: 0 10px;
+}
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.footer-links a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+    color: #ffc107; /* Светло-желтый при наведении */
+}
+
+.footer-links span {
+    color: white;
+    font-size: 14px;
 }

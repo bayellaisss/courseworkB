@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    background-color: #f5f5f5; /* Легкий фон для удобства чтения */
+    background-color: #ffffff; /* Белый фон для минимализма */
     color: #333;
     display: flex;
     flex-direction: column;
@@ -13,60 +13,54 @@ body {
 
 /* Стили для заголовка */
 header {
-    background-color: #004080;
-    color: #fff;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed; /* Фиксируем в верхней части экрана */
+    background-color: #000000;
+    color: #ffffff;
+    padding: 1px 100px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Чтобы перекрывать другие элементы */
+    z-index: 1000;
+
+
 }
 
-header ul {
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffe100;
+}
+
+nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center;
-    gap: 20px; /* Отступы между элементами меню */
+    gap: 20px;
 }
 
-header ul li {
-    margin: 0;
-}
-
-header ul li a {
-    color: #fff;
+nav ul li a {
+    color: #ffffff;
     text-decoration: none;
     font-weight: bold;
-    font-size: 16px;
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
 }
 
-header ul li a:hover {
-    background-color: #003060;
-    text-decoration: underline;
-}
 
 /* Стили для основного контента */
 main {
-    padding: 100px 20px 60px; /* Добавляем отступы для учета фиксированного хедера и футера */
+    padding: 100px 20px 60px;
     max-width: 900px;
     margin: 0 auto;
-    background-color: #ffffff;
+    background-color: #fefefe;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    flex: 1; /* Занимает всё доступное пространство между хэдером и футером */
+    flex: 1;
 }
 
 main h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #004080;
+    color: #000;
 }
 
 .faculty {
@@ -74,46 +68,48 @@ main h1 {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
-    background-color: #fafafa;
+    background-color: #fff;
 }
 
 .faculty h2 {
-    color: #004080;
+    color: #000;
     margin-bottom: 10px;
 }
 
 .faculty p {
     margin: 10px 0;
     padding: 10px;
-    background-color: #f9f9f9;
-    border-left: 5px solid #004080;
+    background-color: #fffbe6;
+    border-left: 5px solid #ffe100;
     border-radius: 4px;
 }
+
 nav ul li a:hover {
-    color: #ffdf00;
+    color: #000;
 }
 
 nav ul li a.active {
-    color: #ffdf00;
-    border-bottom: 2px solid #ffdf00;
+    color: #000;
+    border-bottom: 2px solid #ffe100;
 }
+
 /* Стили для футера */
 footer {
     text-align: center;
     padding: 15px 0;
-    background-color: #004080;
-    color: #fff;
-    position: fixed; /* Фиксируем в нижней части экрана */
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+    background-color: black;
+    color: #ffffff;
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1000;*/
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
     font-size: 14px;
 }
 
 footer a {
-    color: #66c2ff;
+    color: white;
     text-decoration: none;
 }
 
@@ -145,3 +141,4 @@ footer a:hover {
         font-size: 12px;
     }
 }
+

@@ -1,47 +1,66 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Факультеты</title>
-    <link rel="stylesheet" th:href="@{/faculties.css}">
+    <link rel="stylesheet" href="/faculties.css">
 </head>
 <body>
 <header>
     <nav>
+        <div class="logo">
+            <span>Университет мечты</span>
+        </div>
         <ul>
             <li><a href="/">Главная</a></li>
             <li><a href="/faculties">Факультеты</a></li>
             <li><a href="/admission">Абитуриентам</a></li>
             <li><a href="/contact">Контакты</a></li>
+            <!-- Для неавторизованных пользователей -->
             <li><a href="/login" id="login-link">Войти</a></li>
-            <li><a href="/register" id="register-link">Регистрация</a></li>
+            <li><a href="/register" id="register-link">Регистрация</a>
         </ul>
     </nav>
 </header>
 <main>
-    <h1>Результаты поиска по факультетам</h1>
+    <h1>Лучшие факультеты</h1>
 
-    <form th:action="@{/search}" method="get">
-        <input type="text" name="query" placeholder="Название факультета" th:value="${query}">
-        <button type="submit">Поиск</button>
-    </form>
+    <section class="faculty">
+        <h2>Факультет Информатики</h2>
+        <p>Обучение программированию, искусственному интеллекту и анализу данных.</p>
+        <ul>
+            <li><a href="https://www.google.com/search?q=Кыргызский+национальный+университет">Кыргызский национальный университет</a></li>
+            <li><a href="https://www.google.com/search?q=Кыргызско-Российский+сложный+университет">Кыргызско-Российский славянский университет</a></li>
+        </ul>
+    </section>
 
-    <div th:if="${faculties.isEmpty()}">
-        <p>Ничего не найдено</p>
-    </div>
+    <section class="faculty">
+        <h2>Факультет Экономики</h2>
+        <p>Подготовка специалистов в области финансов и бухгалтерского учёта.</p>
+        <ul>
+            <li><a href="https://www.google.com/search?q=Американский+университет+в+Киргизстане">Американский университет в Кыргызстане</a></li>
+            <li><a href="https://www.google.com/search?q=Кыргызский+экономический+университет">Кыргызский экономический университет</a></li>
+        </ul>
+    </section>
 
-    <div th:each="faculty : ${faculties}">
-        <section class="faculty">
-            <h2 th:text="${faculty.name}">Название факультета</h2>
-            <p th:text="${faculty.description}">Описание</p>
-            <ul>
-                <li th:each="uni : ${faculty.universities}">
-                    <a th:href="${uni.url}" th:text="${uni.title}" target="_blank">Университет</a>
-                </li>
-            </ul>
-        </section>
-    </div>
+    <section class="faculty">
+        <h2>Юридический факультет</h2>
+        <p>Готовит профессионалов в области права и правосудия.</p>
+        <ul>
+            <li><a href="https://www.google.com/search?q=Кыргызский+национальный+университет">Кыргызский национальный университет</a></li>
+            <li><a href="https://www.google.com/search?q=Юридический+факультет+КРСУ">Юридический факультет КРСУ</a></li>
+        </ul>
+    </section>
+
+    <section class="faculty">
+        <h2>Медицинский факультет</h2>
+        <p>Программы обучения для будущих врачей и фармацевтов.</p>
+        <ul>
+            <li><a href="https://www.google.com/search?q=Киргизский+государственный+медицинский+университет">Киргизский государственный медицинский университет</a></li>
+            <li><a href="https://www.google.com/search?q=Кыргызский+медицинский+университет">Кыргызский медицинский университет</a></li>
+        </ul>
+    </section>
 </main>
 <footer>
     <p>&copy; 2024 ВУЗ. Все права защищены.</p>

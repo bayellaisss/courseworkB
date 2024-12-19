@@ -1,84 +1,90 @@
+/* Основные стили */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f4f8;
-    color: 004080;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    background-color: #ffffff; /* Белый фон для минимализма */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+/* Стили для заголовка */
 header {
-    background: #004080;
-    padding: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #004080;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+
+
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffe100;
 }
 
 nav ul {
-    display: flex;
-    justify-content: center;
     list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 20px;
+    display: flex;
+    gap: 20px;
 }
 
 nav ul li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
-    font-size: 1.1rem;
     font-weight: bold;
-    transition: color 0.3s ease;
 }
-
-nav ul li a:hover {
-    color: #ffdf00;
-}
-
-nav ul li a.active {
-    color: #ffdf00;
-    border-bottom: 2px solid #ffdf00;
-}
-
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #004080;
-    color: #fff;
-}
-
+/* Стили для основного контента */
 main {
-    padding: 40px 20px;
-    max-width: 1200px;
+    padding: 100px 20px 60px;
+    max-width: 900px;
     margin: 0 auto;
+    background-color: #fefefe;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex: 1;
+}
+
+main h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #000;
 }
 
 .admissions h1 {
-    font-size: 2.5rem;
-    color: #004080;
+    font-size: 2rem;
+    color: #000;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .admissions p {
     font-size: 1.1rem;
-    color: #004080;
+    color: #333;
     text-align: center;
     margin-bottom: 40px;
 }
 
 .tips-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
-    max-width: 1100px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .tip {
     background: #fff;
-    padding: 25px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -91,8 +97,8 @@ main {
 
 .tip h2 {
     font-size: 1.5rem;
-    color: #2d2d2d;
-    margin-bottom: 15px;
+    color: #000;
+    margin-bottom: 10px;
 }
 
 .tip p {
@@ -107,8 +113,8 @@ main {
 }
 
 .cta a {
-    background-color: #004080;
-    color: #fff;
+    background-color: #F9E300;
+    color: #000;
     padding: 10px 20px;
     font-size: 1.1rem;
     text-decoration: none;
@@ -117,9 +123,35 @@ main {
 }
 
 .cta a:hover {
-    background-color: #6a11cb;
+    background-color: #000;
+    color: #F9E300;
 }
 
+/* Стили для футера */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #0c0c0c;
+    color: white;
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*z-index: 1000;*/
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+footer a {
+    color: rgba(248, 246, 246, 0);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .tips-container {
         grid-template-columns: 1fr;
@@ -135,10 +167,10 @@ main {
     }
 
     .admissions h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .tip {
-        padding: 20px;
+        padding: 15px;
     }
 }
